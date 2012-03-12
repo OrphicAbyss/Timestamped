@@ -1,6 +1,18 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Copyright (C) 2012 Chris Hallson
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 package timestamp;
 
@@ -12,8 +24,11 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- *
- * @author chris
+ * Timestamped runs a command and prepends it's output (both output and error)
+ * with a timestamp based on a default format or one supplied using the -format
+ * argument.
+ * 
+ * @author DrLabman
  */
 public class Timestamped {
 	static DateFormat format = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -35,6 +50,7 @@ public class Timestamped {
 		@Override
 		public void run() {
 			try {
+				// Read in from the input until null is received
 				String line;
 				while ((line = input.readLine()) != null) {
 					Date time = Calendar.getInstance().getTime();
@@ -57,7 +73,7 @@ public class Timestamped {
 	 * Print the commands usage string
 	 */
 	private static void printUsage(){
-		System.err.println("Usage: Timestamped [-format 'date format string'] <command>");
+		System.err.printf("Usage: Timestamped [-format 'date format string'] <command>\n");
 	}
 	
 	/**
