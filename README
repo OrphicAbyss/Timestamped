@@ -1,0 +1,37 @@
+TIMESTAMPED
+================================================================================
+Is a command wrapper which prepends timestamps onto all output lines based on
+a simple date format. Both the standard error and standard output streams are
+modified.
+
+The Format can be changes by the -format option. 
+
+================================================================================
+Example Output
+--------------------------------------------------------------------------------
+java -jar dist/Timestamped.jar ping -c 4 192.168.1.254
+2012/03/12 10:23:02: PING 192.168.1.254 (192.168.1.254) 56(84) bytes of data.
+2012/03/12 10:23:02: 64 bytes from 192.168.1.254: icmp_req=1 ttl=64 time=3.29 ms
+2012/03/12 10:23:03: 64 bytes from 192.168.1.254: icmp_req=2 ttl=64 time=4.26 ms
+2012/03/12 10:23:04: 64 bytes from 192.168.1.254: icmp_req=3 ttl=64 time=3.22 ms
+2012/03/12 10:23:05: 64 bytes from 192.168.1.254: icmp_req=4 ttl=64 time=3.55 ms
+2012/03/12 10:23:05: 
+2012/03/12 10:23:05: --- 192.168.1.254 ping statistics ---
+2012/03/12 10:23:05: 4 packets transmitted, 4 received, 0% packet loss, time 3004ms
+2012/03/12 10:23:05: rtt min/avg/max/mdev = 3.229/3.584/4.260/0.411 ms
+================================================================================
+Copyright (C) 2012 Chris Hallson
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
