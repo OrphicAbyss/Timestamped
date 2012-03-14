@@ -28,6 +28,9 @@ import java.util.Date;
  * with a timestamp based on a default format or one supplied using the -format
  * argument.
  * 
+ * Currently this program doesn't pass through input into the program and only
+ * deals with taking output and displaying it to the console.
+ * 
  * @author DrLabman
  */
 public class Timestamped {
@@ -72,8 +75,31 @@ public class Timestamped {
 	/**
 	 * Print the commands usage string
 	 */
-	private static void printUsage(){
+	private static void printUsageAndExit(){
 		System.err.printf("Usage: Timestamped [-format 'date format string'] <command>\n");
+		System.exit(0);
+	}
+	
+	/**
+	 * Takes a list of arguments and looks for options in them. Removes the
+	 * found options from the list of arguments so that the rest can be turned
+	 * into a command.
+	 * 
+	 * @param args List of command line arguments
+	 * @return List of command line arguments which aren't options
+	 */
+	private static String[] checkForArgumentOptions(String[] args){
+		if (args[0].startsWith("-")){
+			if (args[0].equals("-format")){
+				//Create new format with passed in string
+				format = new SimpleDateFormat(args[1]);
+				args = Arrays.copyOfRange(args, 2, args.length);
+			} else {
+				System.err.printf("Invalid option '%s'\n", args[0]);
+				printUsageAndExit();
+			}
+		}
+		return args;
 	}
 	
 	/**
@@ -83,21 +109,10 @@ public class Timestamped {
 		try {
 			// If the user didn't add any arguments, print usage information
 			if (args == null || args.length == 0){
-				printUsage();
-				System.exit(0);
+				printUsageAndExit();
 			}
 			// Check for options
-			if (args[0].startsWith("-")){
-				if (args[0].equals("-format")){
-					//Create new format with passed in string
-					format = new SimpleDateFormat(args[1]);
-					args = Arrays.copyOfRange(args, 2, args.length);
-				} else {
-					System.err.printf("Invalid option '%s'\n", args[0]);
-					printUsage();
-					System.exit(0);
-				}
-			}
+			args = checkForArgumentOptions(args);
 			
 			// Create a command line by combining the arguments
 			StringBuilder sb = new StringBuilder();

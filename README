@@ -4,7 +4,13 @@ Is a command wrapper which prepends timestamps onto all output lines based on
 a simple date format. Both the standard error and standard output streams are
 modified.
 
-The Format can be changes by the -format option. 
+The Date Format can be changes by the -format option. This takes a Java Date
+Format string.
+
+The default format is "yyyy/MM/dd HH:mm:ss"
+
+See the Java Docs for more information on format strings:
+http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html
 
 ================================================================================
 Example Output
